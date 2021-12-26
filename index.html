@@ -219,7 +219,10 @@
 
 			// get surname of the user
 			const surname = document.getElementById("surname").value;
-
+			
+			//BiletNo
+			const d = new Date();
+			let biletNo = d.toISOString();
 
 
 			const formValueObj = {
@@ -232,6 +235,7 @@
 				adults: adults,
 				children: children,
 				travelClass: travelClass,
+				biletNo: biletNo,
 			};
 
 			localStorage.setItem("formValueObj", JSON.stringify(formValueObj));
