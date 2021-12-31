@@ -173,7 +173,8 @@
 							<text transform="matrix(1 0 0 1 621.999 227.2734)" id="svgsecurity"
 								class="st6 st7">985</text>
 							<g class="st8">
-								<text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">Güvenlik Kodu</text>
+								<text transform="matrix(1 0 0 1 518.083 280.0879)" class="st9 st6 st10">Güvenlik
+									Kodu</text>
 							</g>
 							<rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
 							<rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
@@ -194,7 +195,7 @@
 				</div>
 				<div class="field-container">
 					<label for="cardnumber">Kart Numarası</label><span id="generatecard">Rastgele Numara</span>
-					<input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" >
+					<input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
 					<svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
 						xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
@@ -208,7 +209,7 @@
 					<label for="securitycode">Güvenlik Kodu</label>
 					<input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
 				</div>
-				<a  style="color: #fff; border: 1px solid #000; background-color: #3399ff; font-size:18px; margin-top: 20px; padding:8px; text-align: center;"
+				<a style="color: #fff; border: 1px solid #000; background-color: #3399ff; font-size:18px; margin-top: 20px; padding:8px; text-align: center;"
 					onclick="submitForm(event)">Ödeme
 					Yap</a>
 			</div>
@@ -220,10 +221,8 @@
 
 		<script>
 			const values = JSON.parse(localStorage.getItem("formValueObj"));
-			console.log(values);
 
 			const price = JSON.parse(localStorage.getItem("price"));
-			console.log(typeof values.adults);
 
 			document.getElementById("name").innerHTML = values.name;
 			document.getElementById("surname").innerHTML = values.surname;
@@ -236,22 +235,54 @@
 			document.getElementById("price").innerHTML = price * +values.adults + price * +values.children;
 
 
-			/* document.getElementById("").innerHTML = values.;
-			document.getElementById("").innerHTML = values.; */
-
-			/* <td id="name">İsim</td>
-			<td id="surname">Soyad</td>
-			<td id="departingDate">Gidiş Tarihi</td>
-			<td id="returnDate">Dönüş Tarihi</td>
-			<td id="flyingFrom">Nereden</td>
-			<td id="flyingTo">Nereye</td>
-			<td id="">Ücret</td>
-			<td id="">Bilet Numarası</th> */
-
-			function submitForm (e) {
+			function submitForm(e) {
 				e.preventDefault();
 				alert("Biletiniz başarıyla alındı. Teşekkürler.");
 			}
+
+			
+
+
+			// Get All Users
+			/* 		fetch('http://localhost:7000/api/users')
+						.then(response => response.json())
+						.then(json => console.log(json))
+		 */
+
+
+			const data = {
+				 name: values.name,
+				surname: values.surname,
+				departingDate: values.departingDate,
+				returnDate: values.returnDate,
+				flyingFrom: values.flyingFrom ,
+				flyingTo: values.flyingTo ,
+				biletNo: values.biletNo , 
+				
+			};
+
+			
+			fetch('https://dist-system-backend.herokuapp.com/api/users', {
+				method: 'POST', // or 'PUT'
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log('Success:', data);
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+
+
+		</script>
+
+
+		<script>
+			
 
 		</script>
 
